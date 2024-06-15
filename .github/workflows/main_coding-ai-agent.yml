@@ -41,7 +41,6 @@ jobs:
       - name: Prepare artifact for deployment
         run: |
           cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          deactivate
           zip -r ../release.zip . -x "venv/*"
 
       - name: Upload artifact for deployment job
@@ -68,6 +67,6 @@ jobs:
         with:
           app-name: 'coding-ai-agent'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DD8237DFA1A42C68E3A381D98D006EB }}
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
           scm-do-build-during-deployment: true
           enable-oryx-build: true
