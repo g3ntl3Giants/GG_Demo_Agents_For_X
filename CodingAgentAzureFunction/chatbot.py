@@ -1,14 +1,11 @@
 # chatbot.py
 import os
-import json
 import logging
 import time
-import threading
 from openai import OpenAI
 from pathlib import Path
 from chatgpt import ChatGPT
-from cli_animations import loading_animation
-from data_processing import extract_text_from_html, extract_text_from_pdf, extract_text_from_txt, _extract_text
+from data_processing import extract_text_from_txt, _extract_text
 from dotenv import load_dotenv
 
 # Load environment variables
