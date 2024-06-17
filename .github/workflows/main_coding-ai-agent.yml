@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: './CodingAgentAzureFunction' # Path to your function app project
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # Path to your function app project
   PYTHON_VERSION: '3.10' # Python version to use
 
 jobs:
@@ -33,15 +33,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           pip install -r requirements.txt
 
       # Optional: Add step to run tests here
 
       - name: Prepare artifact for deployment
         run: |
-          cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          zip -r ../release.zip . -x "venv/*"
+          zip -r release.zip . -x "venv/*" -x ".github/*"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -69,8 +67,7 @@ jobs:
         id: deploy-to-function
         with:
           app-name: 'coding-ai-agent'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          package: '.' # Adjusted to match the actual directory structure
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
           scm-do-build-during-deployment: true
           enable-oryx-build: true
-
