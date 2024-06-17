@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # Path to your function app project
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: './CodingAgentAzureFunction' # Path to your function app project
   PYTHON_VERSION: '3.10' # Python version to use
 
 jobs:
