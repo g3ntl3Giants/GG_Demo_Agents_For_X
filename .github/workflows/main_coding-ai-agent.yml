@@ -33,7 +33,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ${{ secrets.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           pip install -r requirements.txt
 
       # Optional: Add step to run tests here
